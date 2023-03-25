@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 
 @Component
-public class GetResourceFileTest {
+public class GetResourceFileService {
     public void getResouceFile() {
 
         /*
@@ -15,7 +15,7 @@ public class GetResourceFileTest {
          * java -jar方式运行,不可以获得resources正确的绝对路径，因为jar是当做一个文件，而不是文件夹;
          * resourcesPath:file:/D:/freemarker-demo/target/freemarker-demo-1.0.jar!/BOOT-INF/classes!/templates/template.docx
          * */
-        String resourcesPath = GetResourceFileTest.class.getResource("/templates/template.docx").getPath();
+        String resourcesPath = GetResourceFileService.class.getResource("/templates/generateWord2/template.docx").getPath();
         System.out.println("resourcesPath:" + resourcesPath);
 
         /*
@@ -47,7 +47,10 @@ public class GetResourceFileTest {
          * */
         File templateFile = new File("./temp.docx");
 //        File templateFile = File.createTempFile("temp", ".docx", new File("."));
-        try (InputStream templateFileInputStream = GetResourceFileTest.class.getResourceAsStream("/templates/template.docx"); OutputStream outStream = new FileOutputStream(templateFile);) {
+        try (
+                InputStream templateFileInputStream = GetResourceFileService.class.getResourceAsStream("/templates/generateWord2/template.docx");
+                OutputStream outStream = new FileOutputStream(templateFile);
+        ) {
             int bytesRead = 0;
             byte[] buffer = new byte[8192];
             while ((bytesRead = templateFileInputStream.read(buffer, 0, 8192)) != -1) {

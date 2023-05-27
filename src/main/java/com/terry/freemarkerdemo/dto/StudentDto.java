@@ -3,10 +3,19 @@ package com.terry.freemarkerdemo.dto;
 import java.util.List;
 
 public class StudentDto {
+    private Long stuId;
     private String name;
     private String gender;
     private String grade;
     private List<ExamInfoDto> examInfoList;
+
+    public Long getStuId() {
+        return stuId;
+    }
+
+    public void setStuId(Long stuId) {
+        this.stuId = stuId;
+    }
 
     public String getName() {
         return name;
